@@ -1,0 +1,5 @@
+services:
+  evrinoma.partner.fixtures.partner:
+    class: Evrinoma\PartnerBundle\Fixtures\PartnerFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

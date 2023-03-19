@@ -1,0 +1,9 @@
+services:
+  evrinoma.partner.test.functional.action.partner:
+    class: Evrinoma\PartnerBundle\Tests\Functional\Action\BasePartner
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\Tests\Functional\Action\BasePartner:
+    alias: evrinoma.partner.test.functional.action.partner
+    public: true

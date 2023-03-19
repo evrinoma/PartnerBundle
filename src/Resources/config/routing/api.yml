@@ -1,0 +1,3 @@
+partner_api:
+  resource: "@EvrinomaPartnerBundle/Controller/PartnerApiController.php"
+  type: annotation

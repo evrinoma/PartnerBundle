@@ -1,0 +1,2 @@
+partner:
+    resource: "@EvrinomaPartnerBundle/Resources/config/routes.yml"

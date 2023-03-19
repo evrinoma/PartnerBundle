@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      PartnerBundle:
+        namespace_prefix: "Evrinoma\\PartnerBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/PartnerBundle'

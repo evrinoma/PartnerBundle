@@ -1,0 +1,91 @@
+services:
+  Evrinoma\PartnerBundle\Controller\PartnerApiController:
+    alias: evrinoma.partner.api.controller
+    public: true
+
+  evrinoma.partner.api.controller:
+    class: Evrinoma\PartnerBundle\Controller\PartnerApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.partner.facade'
+    autowire: true
+
+  evrinoma.partner.facade:
+    class: Evrinoma\PartnerBundle\Facade\Partner\Facade
+    arguments:
+      - '@evrinoma.partner.command.manager'
+      - '@evrinoma.partner.query.manager'
+      - '@evrinoma.partner.adaptor'
+    autowire: true
+
+  Evrinoma\PartnerBundle\Facade\Partner\FacadeInterface:
+    alias: evrinoma.partner.facade
+
+  evrinoma.partner.factory:
+    class: Evrinoma\PartnerBundle\Factory\Partner\Factory
+    public: true
+    arguments:
+
+  evrinoma.partner.orm.repository:
+    class: Evrinoma\PartnerBundle\Repository\Orm\Partner\PartnerRepository
+    public: true
+    arguments:
+
+  evrinoma.partner.command.manager:
+    class: Evrinoma\PartnerBundle\Manager\CommandManager
+    arguments:
+      - '@evrinoma.partner.validator'
+      - '@evrinoma.partner.repository'
+      - '@evrinoma.partner.factory'
+      - '@evrinoma.partner.command.mediator'
+
+  Evrinoma\PartnerBundle\Manager\CommandManagerInterface:
+    alias: evrinoma.partner.command.manager
+
+  evrinoma.partner.query.manager:
+    class: Evrinoma\PartnerBundle\Manager\QueryManager
+    arguments:
+      - '@evrinoma.partner.repository'
+
+  Evrinoma\PartnerBundle\Manager\QueryManagerInterface:
+    alias: evrinoma.partner.query.manager
+    
+  evrinoma.partner.validator:
+    class: Evrinoma\PartnerBundle\Validator\PartnerValidator
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\Validator\PartnerValidator:
+    alias: evrinoma.partner.validator
+
+  evrinoma.partner.query.orm.mediator:
+    class: Evrinoma\PartnerBundle\Mediator\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\Mediator\Orm\QueryMediator:
+    alias: evrinoma.partner.query.orm.mediator
+
+  evrinoma.partner.command.mediator:
+    class: Evrinoma\PartnerBundle\Mediator\CommandMediator
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\Mediator\CommandMediator:
+    alias: evrinoma.partner.command.mediator
+
+  Evrinoma\PartnerBundle\Mediator\CommandMediatorInterface:
+    alias: evrinoma.partner.command.mediator
+
+  evrinoma.partner.pre.validator:
+    class: Evrinoma\PartnerBundle\PreValidator\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\PreValidator\DtoPreValidator:
+    alias: evrinoma.partner.pre.validator
+
+  Evrinoma\PartnerBundle\PreValidator\DtoPreValidatorInterface:
+    alias: evrinoma.partner.pre.validator
