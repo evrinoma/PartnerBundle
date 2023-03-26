@@ -17,15 +17,18 @@ use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\LogoTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\NameTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\UrlTrait;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
 {
     use ActiveTrait;
     use IdTrait;
+    use LogoTrait;
     use NameTrait;
     use PositionTrait;
     use UrlTrait;
@@ -41,6 +44,21 @@ class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
             $url = $request->get(PartnerApiDtoInterface::URL);
             $position = $request->get(PartnerApiDtoInterface::POSITION);
 
+            $files = ($request->files->has($this->getClass())) ? $request->files->get($this->getClass()) : [];
+
+            try {
+                if (\array_key_exists(PartnerApiDtoInterface::LOGO, $files)) {
+                    $logo = $files[PartnerApiDtoInterface::LOGO];
+                } else {
+                    $logo = $request->get(PartnerApiDtoInterface::LOGO);
+                    if (null !== $logo) {
+                        $logo = new File($logo);
+                    }
+                }
+            } catch (\Exception $e) {
+                $logo = null;
+            }
+
             if ($active) {
                 $this->setActive($active);
             }
@@ -55,6 +73,9 @@ class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
             }
             if ($url) {
                 $this->setUrl($url);
+            }
+            if ($logo) {
+                $this->setLogo($logo);
             }
         }
 

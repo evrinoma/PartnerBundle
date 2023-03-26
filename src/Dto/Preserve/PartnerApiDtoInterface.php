@@ -15,10 +15,11 @@ namespace Evrinoma\PartnerBundle\Dto\Preserve;
 
 use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\LogoInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\NameInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\UrlInterface;
 
-interface PartnerApiDtoInterface extends IdInterface, ActiveInterface, NameInterface, UrlInterface, PositionInterface
+interface PartnerApiDtoInterface extends IdInterface, ActiveInterface, NameInterface, UrlInterface, LogoInterface, PositionInterface
 {
 }

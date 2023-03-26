@@ -72,6 +72,7 @@ services:
     class: Evrinoma\PartnerBundle\Mediator\CommandMediator
     public: true
     arguments:
+      - '@evrinoma.partner.system.file_system'
 
   Evrinoma\PartnerBundle\Mediator\CommandMediator:
     alias: evrinoma.partner.command.mediator
@@ -89,3 +90,14 @@ services:
 
   Evrinoma\PartnerBundle\PreValidator\DtoPreValidatorInterface:
     alias: evrinoma.partner.pre.validator
+
+  evrinoma.partner.system.file_system:
+    class: Evrinoma\PartnerBundle\System\FileSystem
+    public: true
+    arguments:
+
+  Evrinoma\PartnerBundle\System\FileSystem:
+    alias: evrinoma.partner.system.file_system
+
+  Evrinoma\PartnerBundle\System\FileSystemInterface:
+    alias: evrinoma.partner.system.file_system

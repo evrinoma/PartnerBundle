@@ -56,16 +56,12 @@ final class PartnerApiController extends AbstractWrappedApiController implements
 
     /**
      * @Rest\Post("/api/partner/create", options={"expose": true}, name="api_partner_create")
-     *
      * @OA\Post(
      *     tags={"partner"},
      *     description="the method perform create partner",
-     *
      *     @OA\RequestBody(
-     *
      *         @OA\MediaType(
      *             mediaType="application/json",
-     *
      *             @OA\Schema(
      *                 example={
      *                     "class": "Evrinoma\PartnerBundle\Dto\PartnerApiDto",
@@ -75,17 +71,17 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *                     "position": "1",
      *                 },
      *                 type="object",
-     *
      *                 @OA\Property(property="class", type="string", default="Evrinoma\PartnerBundle\Dto\PartnerApiDto"),
      *                 @OA\Property(property="id", type="string"),
      *                 @OA\Property(property="name", type="string"),
      *                 @OA\Property(property="url", type="string"),
      *                 @OA\Property(property="position", type="int"),
+     *                 @OA\Property(property="logo", type="string"),
+     *                 @OA\Property(property="Evrinoma\PartnerBundle\Dto\PartnerApiDto[logo]", type="string",  format="binary")
      *             )
      *         )
      *     )
      * )
-     *
      * @OA\Response(response=200, description="Create partner")
      *
      * @return JsonResponse
@@ -112,17 +108,13 @@ final class PartnerApiController extends AbstractWrappedApiController implements
     }
 
     /**
-     * @Rest\Put("/api/partner/save", options={"expose": true}, name="api_partner_save")
-     *
-     * @OA\Put(
+     * @Rest\Post("/api/partner/save", options={"expose": true}, name="api_partner_save")
+     * @OA\Post(
      *     tags={"partner"},
      *     description="the method perform save partner for current entity",
-     *
      *     @OA\RequestBody(
-     *
      *         @OA\MediaType(
      *             mediaType="application/json",
-     *
      *             @OA\Schema(
      *                 example={
      *                     "class": "Evrinoma\PartnerBundle\Dto\PartnerApiDto",
@@ -133,18 +125,18 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *                     "position": "1",
      *                 },
      *                 type="object",
-     *
      *                 @OA\Property(property="class", type="string", default="Evrinoma\PartnerBundle\Dto\PartnerApiDto"),
      *                 @OA\Property(property="id", type="string"),
      *                 @OA\Property(property="name", type="string"),
      *                 @OA\Property(property="url", type="string"),
      *                 @OA\Property(property="active", type="string"),
      *                 @OA\Property(property="position", type="int"),
+     *                 @OA\Property(property="logo", type="string"),
+     *                 @OA\Property(property="Evrinoma\PartnerBundle\Dto\FileApiDto[logo]", type="string",  format="binary")
      *             )
      *         )
      *     )
      * )
-     *
      * @OA\Response(response=200, description="Save partner")
      *
      * @return JsonResponse
@@ -170,36 +162,30 @@ final class PartnerApiController extends AbstractWrappedApiController implements
 
     /**
      * @Rest\Delete("/api/partner/delete", options={"expose": true}, name="api_partner_delete")
-     *
      * @OA\Delete(
      *     tags={"partner"},
-     *
      *     @OA\Parameter(
      *         description="class",
      *         in="query",
      *         name="class",
      *         required=true,
-     *
      *         @OA\Schema(
      *             type="string",
      *             default="Evrinoma\PartnerBundle\Dto\PartnerApiDto",
      *             readOnly=true
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",
      *         name="id",
      *         required=true,
-     *
      *         @OA\Schema(
      *             type="string",
      *             default="3",
      *         )
      *     )
      * )
-     *
      * @OA\Response(response=200, description="Delete partner")
      *
      * @return JsonResponse
@@ -226,10 +212,8 @@ final class PartnerApiController extends AbstractWrappedApiController implements
 
     /**
      * @Rest\Get("/api/partner/criteria", options={"expose": true}, name="api_partner_criteria")
-     *
      * @OA\Get(
      *     tags={"partner"},
-     *
      *     @OA\Parameter(
      *         description="class",
      *         in="query",
@@ -242,7 +226,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *             readOnly=true
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",
@@ -252,7 +235,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *             type="string",
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="position",
      *         in="query",
@@ -262,7 +244,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *             type="string",
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="name",
      *         in="query",
@@ -272,7 +253,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *             type="string",
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="url",
      *         in="query",
@@ -283,7 +263,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         )
      *     )
      * )
-     *
      * @OA\Response(response=200, description="Return partner")
      *
      * @return JsonResponse
@@ -309,23 +288,19 @@ final class PartnerApiController extends AbstractWrappedApiController implements
 
     /**
      * @Rest\Get("/api/partner", options={"expose": true}, name="api_partner")
-     *
      * @OA\Get(
      *     tags={"partner"},
-     *
      *     @OA\Parameter(
      *         description="class",
      *         in="query",
      *         name="class",
      *         required=true,
-     *
      *         @OA\Schema(
      *             type="string",
      *             default="Evrinoma\PartnerBundle\Dto\PartnerApiDto",
      *             readOnly=true
      *         )
      *     ),
-     *
      *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",

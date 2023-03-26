@@ -17,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
 use Evrinoma\UtilsBundle\Entity\IdTrait;
+use Evrinoma\UtilsBundle\Entity\LogoTrait;
 use Evrinoma\UtilsBundle\Entity\NameTrait;
 use Evrinoma\UtilsBundle\Entity\PositionTrait;
 use Evrinoma\UtilsBundle\Entity\UrlTrait;
@@ -29,6 +30,7 @@ abstract class AbstractPartner implements PartnerInterface
     use ActiveTrait;
     use CreateUpdateAtTrait;
     use IdTrait;
+    use LogoTrait;
     use NameTrait;
     use PositionTrait;
     use UrlTrait;

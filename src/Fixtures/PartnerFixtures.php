@@ -29,6 +29,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'a',
             PartnerApiDtoInterface::POSITION => 1,
             'created_at' => '2008-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
         ],
         [
             PartnerApiDtoInterface::NAME => 'kzkt',
@@ -36,6 +37,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'a',
             PartnerApiDtoInterface::POSITION => 2,
             'created_at' => '2015-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
         ],
         [
             PartnerApiDtoInterface::NAME => 'c2m',
@@ -43,6 +45,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'a',
             PartnerApiDtoInterface::POSITION => 3,
             'created_at' => '2020-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
         ],
         [
             PartnerApiDtoInterface::NAME => 'kzkt2',
@@ -50,6 +53,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'd',
             PartnerApiDtoInterface::POSITION => 1,
             'created_at' => '2015-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
             ],
         [
             PartnerApiDtoInterface::NAME => 'nvr',
@@ -57,6 +61,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'b',
             PartnerApiDtoInterface::POSITION => 2,
             'created_at' => '2010-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
         ],
         [
             PartnerApiDtoInterface::NAME => 'nvr2',
@@ -64,6 +69,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'd',
             PartnerApiDtoInterface::POSITION => 3,
             'created_at' => '2010-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
             ],
         [
             PartnerApiDtoInterface::NAME => 'nvr3',
@@ -71,6 +77,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
             PartnerApiDtoInterface::ACTIVE => 'd',
             PartnerApiDtoInterface::POSITION => 1,
             'created_at' => '2011-10-23 10:21:50',
+            PartnerApiDtoInterface::LOGO => 'PATH://TO_LOGO',
         ],
     ];
 
@@ -91,6 +98,7 @@ class PartnerFixtures extends AbstractFixture implements FixtureGroupInterface, 
         foreach ($this->getData() as $record) {
             $entity = $this->getEntity();
             $entity
+                ->setLogo($record[PartnerApiDtoInterface::LOGO])
                 ->setName($record[PartnerApiDtoInterface::NAME])
                 ->setUrl($record[PartnerApiDtoInterface::URL])
                 ->setPosition($record[PartnerApiDtoInterface::POSITION])

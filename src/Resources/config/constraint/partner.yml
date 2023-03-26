@@ -7,3 +7,6 @@ services:
 
   evrinoma.partner.constraint.property.active:
     class: Evrinoma\PartnerBundle\Constraint\Property\Active
+
+  evrinoma.partner.constraint.property.logo:
+    class: Evrinoma\PartnerBundle\Constraint\Property\Logo

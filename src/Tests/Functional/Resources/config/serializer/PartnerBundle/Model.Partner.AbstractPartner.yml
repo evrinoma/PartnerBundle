@@ -24,3 +24,6 @@ Evrinoma\PartnerBundle\Model\Partner\AbstractPartner:
     position:
       groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
       expose: true
+    logo:
+      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      expose: true

@@ -16,10 +16,11 @@ namespace Evrinoma\PartnerBundle\Model\Partner;
 use Evrinoma\UtilsBundle\Entity\ActiveInterface;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtInterface;
 use Evrinoma\UtilsBundle\Entity\IdInterface;
+use Evrinoma\UtilsBundle\Entity\LogoInterface;
 use Evrinoma\UtilsBundle\Entity\NameInterface;
 use Evrinoma\UtilsBundle\Entity\PositionInterface;
 use Evrinoma\UtilsBundle\Entity\UrlInterface;
 
-interface PartnerInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, UrlInterface, NameInterface, PositionInterface
+interface PartnerInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, UrlInterface, NameInterface, PositionInterface, LogoInterface
 {
 }

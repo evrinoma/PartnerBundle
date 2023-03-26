@@ -15,6 +15,7 @@ namespace Evrinoma\PartnerBundle\Dto\Preserve;
 
 use Evrinoma\DtoCommon\ValueObject\Preserve\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\LogoTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\NameTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\UrlTrait;
@@ -23,6 +24,7 @@ trait PartnerApiDtoTrait
 {
     use ActiveTrait;
     use IdTrait;
+    use LogoTrait;
     use NameTrait;
     use PositionTrait;
     use UrlTrait;

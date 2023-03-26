@@ -24,6 +24,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this
             ->checkUrl($dto)
+            ->checkLogo($dto)
             ->checkName($dto)
             ->checkPosition($dto);
     }
@@ -32,6 +33,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this
             ->checkId($dto)
+            ->checkLogo($dto)
             ->checkUrl($dto)
             ->checkName($dto)
             ->checkActive($dto)
@@ -48,6 +50,16 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
         /** @var PartnerApiDtoInterface $dto */
         if (!$dto->hasPosition()) {
             throw new PartnerInvalidException('The Dto has\'t position');
+        }
+
+        return $this;
+    }
+
+    private function checkLogo(DtoInterface $dto): self
+    {
+        /** @var PartnerApiDtoInterface $dto */
+        if (!$dto->hasLogo()) {
+            throw new PartnerInvalidException('The Dto has\'t Logo file');
         }
 
         return $this;

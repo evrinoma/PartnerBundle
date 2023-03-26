@@ -18,10 +18,12 @@ use Evrinoma\PartnerBundle\Dto\PartnerApiDtoInterface;
 use Evrinoma\PartnerBundle\Tests\Functional\Helper\BasePartnerTestTrait;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Active;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Id;
+use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Logo;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Name;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Position;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Url;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
+use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestInterface;
 use Evrinoma\UtilsBundle\Model\ActiveModel;
 use Evrinoma\UtilsBundle\Model\Rest\PayloadModel;
 use PHPUnit\Framework\Assert;
@@ -36,6 +38,11 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
     public const API_PUT = 'evrinoma/api/partner/save';
     public const API_POST = 'evrinoma/api/partner/create';
 
+    protected string $methodPut = ApiBrowserTestInterface::POST;
+
+    protected static array $header = ['CONTENT_TYPE' => 'multipart/form-data'];
+    protected bool $form = true;
+
     protected static function getDtoClass(): string
     {
         return PartnerApiDto::class;
@@ -43,6 +50,8 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
 
     protected static function defaultData(): array
     {
+        static::initFiles();
+
         return [
             PartnerApiDtoInterface::DTO_CLASS => static::getDtoClass(),
             PartnerApiDtoInterface::ID => Id::default(),
@@ -50,11 +59,17 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::ACTIVE => Active::value(),
             PartnerApiDtoInterface::URL => Url::default(),
             PartnerApiDtoInterface::POSITION => Position::value(),
+            PartnerApiDtoInterface::LOGO => Logo::default(),
         ];
     }
 
     public function actionPost(): void
     {
+        $this->createPartner();
+        $this->testResponseStatusCreated();
+
+        static::$files = [];
+
         $this->createPartner();
         $this->testResponseStatusCreated();
     }
@@ -120,20 +135,27 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
 
     public function actionPut(): void
     {
-        $find = $this->assertGet(Id::value());
-
-        $updated = $this->put(static::getDefault([
+        $query = static::getDefault([
             PartnerApiDtoInterface::ID => Id::value(),
             PartnerApiDtoInterface::NAME => Name::value(),
             PartnerApiDtoInterface::URL => Url::value(),
             PartnerApiDtoInterface::POSITION => Position::value(),
-        ]));
+            PartnerApiDtoInterface::LOGO => Logo::value(),
+        ]);
+
+        $find = $this->assertGet(Id::value());
+
+        $updated = $this->put($query);
         $this->testResponseStatusOK();
 
-        Assert::assertEquals($find[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID], $updated[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID]);
-        Assert::assertEquals(Name::value(), $updated[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::NAME]);
-        Assert::assertEquals(Url::value(), $updated[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::URL]);
-        Assert::assertEquals(Position::value(), $updated[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::POSITION]);
+        $this->compareResults($find, $updated, $query);
+
+        static::$files = [];
+
+        $updated = $this->put($query);
+        $this->testResponseStatusOK();
+
+        $this->compareResults($find, $updated, $query);
     }
 
     public function actionGet(): void
@@ -169,6 +191,7 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::NAME => Name::wrong(),
             PartnerApiDtoInterface::URL => Url::wrong(),
             PartnerApiDtoInterface::POSITION => Position::wrong(),
+            PartnerApiDtoInterface::LOGO => Logo::wrong(),
         ]));
         $this->testResponseStatusNotFound();
     }
@@ -199,6 +222,24 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID],
             PartnerApiDtoInterface::POSITION => Position::blank(),
         ]);
+
+        $this->put($query);
+        $this->testResponseStatusUnprocessable();
+
+        $query = static::getDefault([
+            PartnerApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID],
+            PartnerApiDtoInterface::LOGO => Logo::blank(),
+        ]);
+        static::$files[static::getDtoClass()] = [];
+
+        $this->put($query);
+        $this->testResponseStatusUnprocessable();
+
+        $query = static::getDefault([
+            PartnerApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID],
+            PartnerApiDtoInterface::LOGO => Logo::blank(),
+        ]);
+        static::$files = [];
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
