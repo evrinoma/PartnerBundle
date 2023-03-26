@@ -34,6 +34,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         $file = $this->fileSystem->save($dto->getLogo());
 
         $entity
+            ->setTitle($dto->getTitle())
             ->setName($dto->getName())
             ->setUrl($dto->getUrl())
             ->setLogo($file->getPathname())
@@ -56,6 +57,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         /* @var $dto PartnerApiDtoInterface */
         $file = $this->fileSystem->save($dto->getLogo());
         $entity
+            ->setTitle($dto->getTitle())
             ->setName($dto->getName())
             ->setUrl($dto->getUrl())
             ->setLogo($file->getPathname())

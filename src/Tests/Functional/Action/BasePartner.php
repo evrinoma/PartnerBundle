@@ -21,6 +21,7 @@ use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Id;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Logo;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Name;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Position;
+use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Title;
 use Evrinoma\PartnerBundle\Tests\Functional\ValueObject\Partner\Url;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
 use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestInterface;
@@ -56,6 +57,7 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::DTO_CLASS => static::getDtoClass(),
             PartnerApiDtoInterface::ID => Id::default(),
             PartnerApiDtoInterface::NAME => Name::default(),
+            PartnerApiDtoInterface::TITLE => Title::default(),
             PartnerApiDtoInterface::ACTIVE => Active::value(),
             PartnerApiDtoInterface::URL => Url::default(),
             PartnerApiDtoInterface::POSITION => Position::value(),
@@ -88,6 +90,7 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::ID => Id::value(),
             PartnerApiDtoInterface::ACTIVE => Active::block(),
             PartnerApiDtoInterface::NAME => Name::wrong(),
+            PartnerApiDtoInterface::TITLE => Title::wrong(),
         ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
@@ -117,6 +120,14 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
         ]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find[PayloadModel::PAYLOAD]);
+
+        $find = $this->criteria([
+            PartnerApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PartnerApiDtoInterface::ACTIVE => Active::delete(),
+            PartnerApiDtoInterface::TITLE => Title::value(),
+        ]);
+        $this->testResponseStatusOK();
+        Assert::assertCount(2, $find[PayloadModel::PAYLOAD]);
     }
 
     public function actionDelete(): void
@@ -138,6 +149,7 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
         $query = static::getDefault([
             PartnerApiDtoInterface::ID => Id::value(),
             PartnerApiDtoInterface::NAME => Name::value(),
+            PartnerApiDtoInterface::TITLE => Title::value(),
             PartnerApiDtoInterface::URL => Url::value(),
             PartnerApiDtoInterface::POSITION => Position::value(),
             PartnerApiDtoInterface::LOGO => Logo::value(),
@@ -192,6 +204,7 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
             PartnerApiDtoInterface::URL => Url::wrong(),
             PartnerApiDtoInterface::POSITION => Position::wrong(),
             PartnerApiDtoInterface::LOGO => Logo::wrong(),
+            PartnerApiDtoInterface::TITLE => Title::wrong(),
         ]));
         $this->testResponseStatusNotFound();
     }
@@ -205,6 +218,14 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
         $query = static::getDefault([
             PartnerApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID],
             PartnerApiDtoInterface::NAME => Name::blank(),
+        ]);
+
+        $this->put($query);
+        $this->testResponseStatusUnprocessable();
+
+        $query = static::getDefault([
+            PartnerApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID],
+            PartnerApiDtoInterface::TITLE => Title::blank(),
         ]);
 
         $this->put($query);
@@ -258,6 +279,9 @@ class BasePartner extends AbstractServiceTest implements BasePartnerTestInterfac
         $this->testResponseStatusUnprocessable();
 
         $this->createConstraintBlankName();
+        $this->testResponseStatusUnprocessable();
+
+        $this->createConstraintBlankTitle();
         $this->testResponseStatusUnprocessable();
 
         $this->createConstraintBlankUrl();

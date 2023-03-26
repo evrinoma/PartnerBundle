@@ -26,6 +26,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkUrl($dto)
             ->checkLogo($dto)
             ->checkName($dto)
+            ->checkTitle($dto)
             ->checkPosition($dto);
     }
 
@@ -36,6 +37,7 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             ->checkLogo($dto)
             ->checkUrl($dto)
             ->checkName($dto)
+            ->checkTitle($dto)
             ->checkActive($dto)
             ->checkPosition($dto);
     }
@@ -43,6 +45,16 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     public function onDelete(DtoInterface $dto): void
     {
         $this->checkId($dto);
+    }
+
+    private function checkTitle(DtoInterface $dto): self
+    {
+        /** @var PartnerApiDtoInterface $dto */
+        if (!$dto->hasTitle()) {
+            throw new PartnerInvalidException('The Dto has\'t title');
+        }
+
+        return $this;
     }
 
     private function checkPosition(DtoInterface $dto): self

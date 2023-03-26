@@ -19,8 +19,9 @@ use Evrinoma\DtoCommon\ValueObject\Immutable\IdInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\LogoInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\NameInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\PositionInterface;
+use Evrinoma\DtoCommon\ValueObject\Immutable\TitleInterface;
 use Evrinoma\DtoCommon\ValueObject\Immutable\UrlInterface;
 
-interface PartnerApiDtoInterface extends DtoInterface, IdInterface, ActiveInterface, NameInterface, UrlInterface, PositionInterface, LogoInterface
+interface PartnerApiDtoInterface extends DtoInterface, IdInterface, ActiveInterface, NameInterface, UrlInterface, PositionInterface, LogoInterface, TitleInterface
 {
 }

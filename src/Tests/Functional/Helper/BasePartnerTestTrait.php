@@ -41,6 +41,7 @@ trait BasePartnerTestTrait
     {
         Assert::assertEquals($value[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID], $entity[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::ID]);
         Assert::assertEquals(Name::value(), $entity[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::NAME]);
+        Assert::assertEquals(Name::value(), $entity[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::TITLE]);
         Assert::assertEquals(Url::value(), $entity[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::URL]);
         Assert::assertEquals(Position::value(), $entity[PayloadModel::PAYLOAD][0][PartnerApiDtoInterface::POSITION]);
     }
@@ -76,6 +77,13 @@ trait BasePartnerTestTrait
         return $this->post($query);
     }
 
+    protected function createConstraintBlankTitle(): array
+    {
+        $query = static::getDefault([PartnerApiDtoInterface::TITLE => '']);
+
+        return $this->post($query);
+    }
+
     protected function checkResult($entity): void
     {
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $entity);
@@ -87,6 +95,7 @@ trait BasePartnerTestTrait
     {
         Assert::assertArrayHasKey(PartnerApiDtoInterface::ID, $entity);
         Assert::assertArrayHasKey(PartnerApiDtoInterface::NAME, $entity);
+        Assert::assertArrayHasKey(PartnerApiDtoInterface::TITLE, $entity);
         Assert::assertArrayHasKey(PartnerApiDtoInterface::URL, $entity);
         Assert::assertArrayHasKey(PartnerApiDtoInterface::ACTIVE, $entity);
         Assert::assertArrayHasKey(PartnerApiDtoInterface::POSITION, $entity);

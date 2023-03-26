@@ -10,3 +10,6 @@ services:
 
   evrinoma.partner.constraint.property.logo:
     class: Evrinoma\PartnerBundle\Constraint\Property\Logo
+
+  evrinoma.partner.constraint.property.title:
+    class: Evrinoma\PartnerBundle\Constraint\Property\Title

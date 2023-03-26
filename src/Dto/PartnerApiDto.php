@@ -20,6 +20,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\LogoTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\NameTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\TitleTrait;
 use Evrinoma\DtoCommon\ValueObject\Mutable\UrlTrait;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,7 @@ class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
     use LogoTrait;
     use NameTrait;
     use PositionTrait;
+    use TitleTrait;
     use UrlTrait;
 
     public function toDto(Request $request): DtoInterface
@@ -43,6 +45,7 @@ class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
             $name = $request->get(PartnerApiDtoInterface::NAME);
             $url = $request->get(PartnerApiDtoInterface::URL);
             $position = $request->get(PartnerApiDtoInterface::POSITION);
+            $title = $request->get(PartnerApiDtoInterface::TITLE);
 
             $files = ($request->files->has($this->getClass())) ? $request->files->get($this->getClass()) : [];
 
@@ -76,6 +79,9 @@ class PartnerApiDto extends AbstractDto implements PartnerApiDtoInterface
             }
             if ($logo) {
                 $this->setLogo($logo);
+            }
+            if ($title) {
+                $this->setTitle($title);
             }
         }
 

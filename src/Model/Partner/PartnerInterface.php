@@ -19,8 +19,9 @@ use Evrinoma\UtilsBundle\Entity\IdInterface;
 use Evrinoma\UtilsBundle\Entity\LogoInterface;
 use Evrinoma\UtilsBundle\Entity\NameInterface;
 use Evrinoma\UtilsBundle\Entity\PositionInterface;
+use Evrinoma\UtilsBundle\Entity\TitleInterface;
 use Evrinoma\UtilsBundle\Entity\UrlInterface;
 
-interface PartnerInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, UrlInterface, NameInterface, PositionInterface, LogoInterface
+interface PartnerInterface extends ActiveInterface, CreateUpdateAtInterface, IdInterface, UrlInterface, NameInterface, PositionInterface, LogoInterface, TitleInterface
 {
 }

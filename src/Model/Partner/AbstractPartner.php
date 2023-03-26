@@ -20,6 +20,7 @@ use Evrinoma\UtilsBundle\Entity\IdTrait;
 use Evrinoma\UtilsBundle\Entity\LogoTrait;
 use Evrinoma\UtilsBundle\Entity\NameTrait;
 use Evrinoma\UtilsBundle\Entity\PositionTrait;
+use Evrinoma\UtilsBundle\Entity\TitleTrait;
 use Evrinoma\UtilsBundle\Entity\UrlTrait;
 
 /**
@@ -33,5 +34,6 @@ abstract class AbstractPartner implements PartnerInterface
     use LogoTrait;
     use NameTrait;
     use PositionTrait;
+    use TitleTrait;
     use UrlTrait;
 }

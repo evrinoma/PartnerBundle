@@ -74,6 +74,7 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *                 @OA\Property(property="class", type="string", default="Evrinoma\PartnerBundle\Dto\PartnerApiDto"),
      *                 @OA\Property(property="id", type="string"),
      *                 @OA\Property(property="name", type="string"),
+     *                 @OA\Property(property="title", type="string"),
      *                 @OA\Property(property="url", type="string"),
      *                 @OA\Property(property="position", type="int"),
      *                 @OA\Property(property="logo", type="string"),
@@ -128,6 +129,7 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *                 @OA\Property(property="class", type="string", default="Evrinoma\PartnerBundle\Dto\PartnerApiDto"),
      *                 @OA\Property(property="id", type="string"),
      *                 @OA\Property(property="name", type="string"),
+     *                 @OA\Property(property="title", type="string"),
      *                 @OA\Property(property="url", type="string"),
      *                 @OA\Property(property="active", type="string"),
      *                 @OA\Property(property="position", type="int"),
@@ -219,7 +221,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         in="query",
      *         name="class",
      *         required=true,
-     *
      *         @OA\Schema(
      *             type="string",
      *             default="Evrinoma\PartnerBundle\Dto\PartnerApiDto",
@@ -230,7 +231,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         description="id Entity",
      *         in="query",
      *         name="id",
-     *
      *         @OA\Schema(
      *             type="string",
      *         )
@@ -239,7 +239,14 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         description="position",
      *         in="query",
      *         name="position",
-     *
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="title",
+     *         in="query",
+     *         name="title",
      *         @OA\Schema(
      *             type="string",
      *         )
@@ -248,7 +255,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         description="name",
      *         in="query",
      *         name="name",
-     *
      *         @OA\Schema(
      *             type="string",
      *         )
@@ -257,7 +263,6 @@ final class PartnerApiController extends AbstractWrappedApiController implements
      *         description="url",
      *         in="query",
      *         name="url",
-     *
      *         @OA\Schema(
      *             type="string",
      *         )

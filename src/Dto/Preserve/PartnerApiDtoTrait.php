@@ -18,6 +18,7 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\LogoTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\NameTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\PositionTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\TitleTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\UrlTrait;
 
 trait PartnerApiDtoTrait
@@ -27,5 +28,6 @@ trait PartnerApiDtoTrait
     use LogoTrait;
     use NameTrait;
     use PositionTrait;
+    use TitleTrait;
     use UrlTrait;
 }
