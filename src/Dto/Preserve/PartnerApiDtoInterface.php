@@ -20,8 +20,7 @@ use Evrinoma\DtoCommon\ValueObject\Mutable\NameInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\PositionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\TitleInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\UrlInterface;
-use Evrinoma\FcrBundle\DtoCommon\ValueObject\Mutable\FcrsApiDtoInterface;
 
-interface PartnerApiDtoInterface extends IdInterface, ActiveInterface, NameInterface, UrlInterface, LogoInterface, PositionInterface, TitleInterface, FcrsApiDtoInterface
+interface PartnerApiDtoInterface extends IdInterface, ActiveInterface, NameInterface, UrlInterface, LogoInterface, PositionInterface, TitleInterface
 {
 }
