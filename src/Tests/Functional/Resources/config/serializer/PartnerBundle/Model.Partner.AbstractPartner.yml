@@ -2,31 +2,49 @@ Evrinoma\PartnerBundle\Model\Partner\AbstractPartner:
   exclusion_policy: ALL
   properties:
     id:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     createdAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     updatedAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     active:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     name:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     title:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     url:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     position:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
     logo:
-      groups: [ API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER, ]
+      groups: [
+          API_GET_PARTNER, API_POST_PARTNER, API_PUT_PARTNER,
+      ]
       expose: true
