@@ -16,4 +16,5 @@ namespace Evrinoma\PartnerBundle\Repository;
 interface AliasInterface
 {
     public const PARTNER = 'partner';
+    public const PARTNERS = AliasInterface::PARTNER . 's';
 }
